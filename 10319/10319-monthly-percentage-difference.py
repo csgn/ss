@@ -11,6 +11,11 @@ df = sf_transactions.copy()
 df["year_month"] = df['created_at'].agg(
     lambda x: "-".join(str(x).split(" ")[0].split("-")[:2]))
 
+"""
+    df.groupby("year_month")["value"]
+      .reset_index(name="monthly_revenue")
+      .sort_values("year_month")
+"""
 grouped = df.groupby("year_month") \
             .sum() \
             .reset_index() \
